@@ -12,7 +12,7 @@ import yfinance as yf
 import os
 
 if len(sys.argv) == 1:
-    # symbols = ['SPXL', 'SSO', 'VOO', 'TMF', 'UBT', 'VGLT']
+    symbols = ['SPXL', 'SSO', 'VOO', 'TMF', 'UBT', 'VGLT']
     # symbols = ['SPXL', 'SSO', 'VOO']
     # symbols = ['TMF', 'UBT', 'VGLT']
     # symbols = ['VOO', 'VGLT']
@@ -24,7 +24,7 @@ if len(sys.argv) == 1:
     # symbols = ['00680L.TW', '00679B.TWO']
     # symbols = ['0050.TW', '00679B.TWO']
 
-    symbols = ['VT', 'BNDW']
+    # symbols = ['VT', 'BNDW']
 else:
     symbols = sys.argv[1].split(',')
     for i in range(len(symbols)):
@@ -33,6 +33,7 @@ else:
 num_trading_days_per_year = 252
 window_size = 0
 date_format = "%Y-%m-%d"
+loss_only = True
 
 if window_size == 0 :
     end_timestamp = datetime.strptime('2022-03-17', date_format).timestamp()
@@ -79,6 +80,10 @@ def get_volatility_and_performance(symbol):
     for i in range(trading_days):
         # volatilities_in_window.append(math.log(prices[i] / prices[i+1]))
         volatilities_in_window.append((prices[i]-prices[i+1])/prices[i+1])
+
+    if loss_only:
+        volatilities_in_window = np.array(volatilities_in_window)
+        volatilities_in_window = volatilities_in_window[volatilities_in_window<=0]
 
     # most_recent_date = datetime.strptime(lines[-1].split(',')[0], date_format).date()
     # assert (date.today() - most_recent_date).days <= 4, "today is {}, most recent trading day is {}".format(date.today(), most_recent_date)
