@@ -12,13 +12,19 @@ import yfinance as yf
 import os
 
 if len(sys.argv) == 1:
-    # symbols = ['SPXL', 'TMF']
-    # symbols = ['SSO', 'TMF']
     # symbols = ['SPXL', 'SSO', 'VOO', 'TMF', 'UBT', 'VGLT']
     # symbols = ['SPXL', 'SSO', 'VOO']
-    symbols = ['00631L.TW', '0050.TW', '00680L.TW', '00679B.TWO']
+    # symbols = ['TMF', 'UBT', 'VGLT']
+    # symbols = ['VOO', 'VGLT']
+
     # symbols = ['00631L.TW', '0050.TW', 'UBT', 'VGLT']
-    # symbols = ['VT', 'BNDW']
+
+    # symbols = ['00631L.TW', '0050.TW', '00680L.TW', '00679B.TWO']
+    # symbols = ['00631L.TW', '0050.TW']
+    # symbols = ['00680L.TW', '00679B.TWO']
+    # symbols = ['0050.TW', '00679B.TWO']
+
+    symbols = ['VT', 'BNDW']
 else:
     symbols = sys.argv[1].split(',')
     for i in range(len(symbols)):
@@ -37,6 +43,9 @@ if window_size == 0 :
 
     # end_timestamp = datetime.strptime('2020-03-31', date_format).timestamp()
     # start_timestamp = datetime.strptime('2015-12-01', date_format).timestamp()
+
+    # end_timestamp = datetime.strptime('2021-12-31', date_format).timestamp()
+    # start_timestamp = datetime.strptime('2012-01-01', date_format).timestamp()
 
     # end_timestamp = int(time.time())
     # start_timestamp = datetime.strptime('1980-01-01', date_format).timestamp()
@@ -68,8 +77,9 @@ def get_volatility_and_performance(symbol):
         trading_days = window_size
 
     for i in range(trading_days):
-        volatilities_in_window.append(math.log(prices[i] / prices[i+1]))
-        
+        # volatilities_in_window.append(math.log(prices[i] / prices[i+1]))
+        volatilities_in_window.append((prices[i]-prices[i+1])/prices[i+1])
+
     # most_recent_date = datetime.strptime(lines[-1].split(',')[0], date_format).date()
     # assert (date.today() - most_recent_date).days <= 4, "today is {}, most recent trading day is {}".format(date.today(), most_recent_date)
 
