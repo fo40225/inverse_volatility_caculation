@@ -33,11 +33,11 @@ else:
 num_trading_days_per_year = 252
 window_size = 0
 date_format = "%Y-%m-%d"
-loss_only = True
+loss_only = False
 
 if window_size == 0 :
-    end_timestamp = datetime.strptime('2022-03-17', date_format).timestamp()
-    start_timestamp = datetime.strptime('2021-12-17', date_format).timestamp()
+    # end_timestamp = datetime.strptime('2022-03-17', date_format).timestamp()
+    # start_timestamp = datetime.strptime('2021-12-17', date_format).timestamp()
 
     # start_timestamp = datetime.strptime('2011-01-01', date_format).timestamp()
     # start_timestamp = datetime.strptime('2017-02-01', date_format).timestamp()
@@ -45,8 +45,8 @@ if window_size == 0 :
     # end_timestamp = datetime.strptime('2020-03-31', date_format).timestamp()
     # start_timestamp = datetime.strptime('2015-12-01', date_format).timestamp()
 
-    # end_timestamp = datetime.strptime('2021-12-31', date_format).timestamp()
-    # start_timestamp = datetime.strptime('2012-01-01', date_format).timestamp()
+    end_timestamp = datetime.strptime('2021-12-31', date_format).timestamp()
+    start_timestamp = datetime.strptime('2012-01-01', date_format).timestamp()
 
     # end_timestamp = int(time.time())
     # start_timestamp = datetime.strptime('1980-01-01', date_format).timestamp()
