@@ -13,7 +13,6 @@ symbols = ['SPXL', 'SSO', 'VOO', 'TMF', 'UBT', 'VGLT']
 # symbols = ['SPXL', 'SSO', 'VOO']
 # symbols = ['VOO', 'VGLT']
 
-
 # end_timestamp = int(time.time())
 # start_timestamp = datetime.strptime('1986-05-19', date_format).timestamp()
 
@@ -35,10 +34,10 @@ def kelly_criterion(symbol):
         prices.append(float(line.split(',')[4]))
 
     prices.reverse()
-    trading_days = len(prices)-1
+    trading_days = len(prices)-60
     gain_loss_days = []
     for i in range(trading_days):
-        gain_loss_days.append((prices[i]-prices[i+1])/prices[i+1])
+        gain_loss_days.append((prices[i]-prices[i+60])/prices[i+60])
 
     gain_loss_days = np.array(gain_loss_days)
     p = len(gain_loss_days[gain_loss_days > 0])/len(gain_loss_days)
