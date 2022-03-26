@@ -34,19 +34,36 @@ num_trading_days_per_year = 252
 window_size = 0
 date_format = "%Y-%m-%d"
 loss_only = False
+consider_dividends = False
 
 if window_size == 0 :
-    # end_timestamp = datetime.strptime('2022-03-17', date_format).timestamp()
-    # start_timestamp = datetime.strptime('2021-12-17', date_format).timestamp()
+    # season
+    end_timestamp = datetime.strptime('2022-03-17', date_format).timestamp()
+    start_timestamp = datetime.strptime('2021-12-17', date_format).timestamp()
 
+    # ['SPXL', 'SSO', 'VOO', 'TMF', 'UBT', 'VGLT']
+    # end_timestamp = int(time.time())
     # start_timestamp = datetime.strptime('2011-01-01', date_format).timestamp()
-    # start_timestamp = datetime.strptime('2017-02-01', date_format).timestamp()
 
+    # '00631L.TW
+    # end_timestamp = int(time.time())
+    # start_timestamp = datetime.strptime('2014-10-23', date_format).timestamp()
+        
+    # '0050.TW'
+    # end_timestamp = int(time.time())
+    # start_timestamp = datetime.strptime('2008-01-02', date_format).timestamp()
+
+    # ['00680L.TW', '00679B.TWO']
+    # end_timestamp = int(time.time())
+    # start_timestamp = datetime.strptime('2017-01-11', date_format).timestamp()
+
+    # rate hike
     # end_timestamp = datetime.strptime('2020-03-31', date_format).timestamp()
-    # start_timestamp = datetime.strptime('2015-12-01', date_format).timestamp()
+    # start_timestamp = datetime.strptime('2015-07-01', date_format).timestamp()
 
-    end_timestamp = datetime.strptime('2021-12-31', date_format).timestamp()
-    start_timestamp = datetime.strptime('2012-01-01', date_format).timestamp()
+    # 10 years
+    # end_timestamp = datetime.strptime('2021-12-31', date_format).timestamp()
+    # start_timestamp = datetime.strptime('2012-01-01', date_format).timestamp()
 
     # end_timestamp = int(time.time())
     # start_timestamp = datetime.strptime('1980-01-01', date_format).timestamp()
@@ -60,7 +77,7 @@ def get_volatility_and_performance(symbol):
     # lines = requests.get(download_url, cookies={'B': 'chjes25epq9b6&b=3&s=18'}).text.strip().split('\n')
     start_str = datetime.fromtimestamp(start_timestamp).strftime('%Y-%m-%d')
     end_str = datetime.fromtimestamp(end_timestamp).strftime('%Y-%m-%d')
-    data = yf.download(tickers=symbol, start=start_str, end=end_str)
+    data = yf.download(tickers=symbol, start=start_str, end=end_str, auto_adjust=consider_dividends)
     data.to_csv(f'{symbol}.csv')
     with open(f'{symbol}.csv') as file:
         lines = file.readlines()
