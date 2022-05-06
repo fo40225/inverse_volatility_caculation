@@ -12,17 +12,21 @@ import yfinance as yf
 import os
 
 if len(sys.argv) == 1:
-    symbols = ['SPXL', 'SSO', 'VOO', 'TMF', 'UBT', 'VGLT']
-    # symbols = ['SPXL', 'SSO', 'VOO']
+    # symbols = ['SPXL', 'SSO', 'VOO', 'TMF', 'UBT', 'VGLT']
+    symbols = ['SPXL', 'SSO', 'VOO']
     # symbols = ['TMF', 'UBT', 'VGLT']
-    # symbols = ['VOO', 'VGLT']
+    # symbols = ['TYD', 'UST', 'IEF']
 
-    # symbols = ['00631L.TW', '0050.TW', 'UBT', 'VGLT']
+    # symbols = ['VOO', 'VGLT']
+    # symbols = ['SPY', 'TLT']
+    # symbols = ['SPY', 'IEF']
 
     # symbols = ['00631L.TW', '0050.TW', '00680L.TW', '00679B.TWO']
     # symbols = ['00631L.TW', '0050.TW']
     # symbols = ['00680L.TW', '00679B.TWO']
     # symbols = ['0050.TW', '00679B.TWO']
+
+    # symbols = ['VTI', 'BND']
 
     # symbols = ['VT', 'BNDW']
 else:
@@ -38,8 +42,8 @@ consider_dividends = False
 
 if window_size == 0 :
     # season
-    end_timestamp = datetime.strptime('2022-03-17', date_format).timestamp()
-    start_timestamp = datetime.strptime('2021-12-17', date_format).timestamp()
+    end_timestamp = datetime.strptime('2022-06-16', date_format).timestamp()
+    start_timestamp = datetime.strptime('2022-03-18', date_format).timestamp()
 
     # ['SPXL', 'SSO', 'VOO', 'TMF', 'UBT', 'VGLT']
     # end_timestamp = int(time.time())
@@ -57,13 +61,13 @@ if window_size == 0 :
     # end_timestamp = int(time.time())
     # start_timestamp = datetime.strptime('2017-01-11', date_format).timestamp()
 
-    # rate hike
-    # end_timestamp = datetime.strptime('2020-03-31', date_format).timestamp()
-    # start_timestamp = datetime.strptime('2015-07-01', date_format).timestamp()
-
     # 10 years
     # end_timestamp = datetime.strptime('2021-12-31', date_format).timestamp()
     # start_timestamp = datetime.strptime('2012-01-01', date_format).timestamp()
+
+    # ['SPY', 'TLT']
+    # end_timestamp = int(time.time())
+    # start_timestamp = datetime.strptime('2002-07-30', date_format).timestamp()
 
     # end_timestamp = int(time.time())
     # start_timestamp = datetime.strptime('1980-01-01', date_format).timestamp()
