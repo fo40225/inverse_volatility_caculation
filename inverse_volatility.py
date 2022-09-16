@@ -25,6 +25,7 @@ if len(sys.argv) == 1:
     # symbols = ['00631L.TW', '0050.TW']
     # symbols = ['00680L.TW', '00679B.TWO']
     # symbols = ['0050.TW', '00679B.TWO']
+    # symbols = ['00653L.TW', '00652.TW']
 
     # symbols = ['VTI', 'BND']
 
@@ -42,8 +43,11 @@ consider_dividends = False
 
 if window_size == 0 :
     # season
-    end_timestamp = datetime.strptime('2022-06-16', date_format).timestamp()
-    start_timestamp = datetime.strptime('2022-03-18', date_format).timestamp()
+    end_timestamp = datetime.strptime('2022-09-15', date_format).timestamp()
+    start_timestamp = datetime.strptime('2022-06-17', date_format).timestamp()
+
+    # end_timestamp = datetime.strptime('2022-09-13', date_format).timestamp()
+    # start_timestamp = datetime.strptime('2022-06-15', date_format).timestamp()
 
     # ['SPXL', 'SSO', 'VOO', 'TMF', 'UBT', 'VGLT']
     # end_timestamp = int(time.time())

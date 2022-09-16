@@ -41,7 +41,7 @@ symbols = ['SPY', 'TLT']
 # end_timestamp = datetime.strptime('2006-05-12', date_format).timestamp()
 # start_timestamp = datetime.strptime('2004-03-23', date_format).timestamp()
 
-# delta = timedelta(days= 365.25 * 18)
+delta = timedelta(days= 365.25 * 18)
 end_timestamp = int(time.time())
 start_timestamp = datetime.strptime((date.today()-delta).isoformat(), date_format).timestamp()
 
@@ -70,7 +70,7 @@ S = risk_models.sample_cov(df)
 
 # Optimize for maximal Sharpe ratio
 ef = EfficientFrontier(mu, S)
-raw_weights = ef.max_sharpe()
+raw_weights = ef.max_sharpe(risk_free_rate=0)
 cleaned_weights = ef.clean_weights()
 print(cleaned_weights)
 ef.portfolio_performance(verbose=True)

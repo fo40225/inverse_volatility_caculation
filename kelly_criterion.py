@@ -16,7 +16,7 @@ date_format = "%Y-%m-%d"
 # symbols = ['SPXL', 'SSO', 'VOO']
 # symbols = ['VOO', 'VGLT']
 
-symbols = ['SPY', 'TLT']
+# symbols = ['SPY', 'TLT']
 # symbols = ['SPY', 'IEF']
 
 # symbols = ['VFINX', 'VUSTX', 'VFITX']
@@ -29,6 +29,8 @@ symbols = ['SPY', 'TLT']
 # symbols = ['VTI', 'BND']
 
 # symbols = ['VT', 'BNDW']
+
+symbols = ['IOO', 'BLK']
 
 # ['VFINX', 'VUSTX']
 # end_timestamp = int(time.time())
@@ -53,14 +55,17 @@ symbols = ['SPY', 'TLT']
 # start_timestamp = datetime.strptime('2004-03-23', date_format).timestamp()
 
 # TLT VGLT Effective Duration ~ 18 yrs
-delta = timedelta(days= 365.25 * 18)
-end_timestamp = int(time.time())
-start_timestamp = datetime.strptime((date.today()-delta).isoformat(), date_format).timestamp()
+# delta = timedelta(days= 365.25 * 18)
+# end_timestamp = int(time.time())
+# start_timestamp = datetime.strptime((date.today()-delta).isoformat(), date_format).timestamp()
 
 # IEF BND BNDW Effective Duration ~ 8 yrs
 # delta = timedelta(days= 365.25 * 8)
 # end_timestamp = int(time.time())
 # start_timestamp = datetime.strptime((date.today()-delta).isoformat(), date_format).timestamp()
+
+end_timestamp = int(time.time())
+start_timestamp = datetime.strptime('2000-12-09', date_format).timestamp()
 
 consider_dividends = True
 
