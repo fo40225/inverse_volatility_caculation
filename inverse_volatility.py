@@ -13,7 +13,7 @@ import os
 
 if len(sys.argv) == 1:
     # symbols = ['SPXL', 'SSO', 'VOO', 'TMF', 'UBT', 'VGLT']
-    symbols = ['SPXL', 'SSO', 'VOO']
+    # symbols = ['SPXL', 'SSO', 'VOO']
     # symbols = ['TMF', 'UBT', 'VGLT']
     # symbols = ['TYD', 'UST', 'IEF']
 
@@ -22,7 +22,7 @@ if len(sys.argv) == 1:
     # symbols = ['SPY', 'IEF']
 
     # symbols = ['00631L.TW', '0050.TW', '00680L.TW', '00679B.TWO']
-    # symbols = ['00631L.TW', '0050.TW']
+    symbols = ['00631L.TW', '0050.TW']
     # symbols = ['00680L.TW', '00679B.TWO']
     # symbols = ['0050.TW', '00679B.TWO']
     # symbols = ['00653L.TW', '00652.TW']
@@ -43,8 +43,8 @@ consider_dividends = False
 
 if window_size == 0 :
     # season
-    end_timestamp = datetime.strptime('2022-09-15', date_format).timestamp()
-    start_timestamp = datetime.strptime('2022-06-17', date_format).timestamp()
+    end_timestamp = datetime.strptime('2025-03-11', date_format).timestamp()
+    start_timestamp = datetime.strptime('2024-12-19', date_format).timestamp()
 
     # end_timestamp = datetime.strptime('2022-09-13', date_format).timestamp()
     # start_timestamp = datetime.strptime('2022-06-15', date_format).timestamp()
@@ -81,21 +81,21 @@ else:
 
 
 def get_volatility_and_performance(symbol):
-    # download_url = "https://query1.finance.yahoo.com/v7/finance/download/{}?period1={}&period2={}&interval=1d&events=history&crumb=a7pcO//zvcW".format(symbol, start_timestamp, end_timestamp)
-    # lines = requests.get(download_url, cookies={'B': 'chjes25epq9b6&b=3&s=18'}).text.strip().split('\n')
     start_str = datetime.fromtimestamp(start_timestamp).strftime('%Y-%m-%d')
     end_str = datetime.fromtimestamp(end_timestamp).strftime('%Y-%m-%d')
-    data = yf.download(tickers=symbol, start=start_str, end=end_str, auto_adjust=consider_dividends)
+    data = yf.download(tickers=symbol, start=start_str, end=end_str, auto_adjust=False)
     data.to_csv(f'{symbol}.csv')
     with open(f'{symbol}.csv') as file:
         lines = file.readlines()
     os.remove(f'{symbol}.csv')
-    assert lines[0].split(',')[0] == 'Date'
-    assert lines[0].split(',')[4] == 'Close'
     prices = []
-    for line in lines[1:]:
-        prices.append(float(line.split(',')[4]))
-    prices.reverse()
+    for line in lines[3:]:
+        if consider_dividends:
+            col_idx=1 #Adj Close
+        else:
+            col_idx=2 #Close
+        prices.append(float(line.split(',')[col_idx]))
+    # prices.reverse()
     volatilities_in_window = []
     if window_size == 0:
         trading_days = len(prices)-1
